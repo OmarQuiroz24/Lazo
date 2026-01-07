@@ -1,0 +1,9 @@
+[workspace]
+members = [
+    "lazo-main",
+    "lazo-core",
+    "lazo-model",
+    "lazo-node"
+]
+
+resolver = "2"
