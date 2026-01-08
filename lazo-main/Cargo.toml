@@ -4,3 +4,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+eframe = "0.33"
+lazo-core = { path = "../lazo-core" }
+serde = { version = "1.0", features = ["derive"] }
+rfd = "0.15"
