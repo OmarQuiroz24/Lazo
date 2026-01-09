@@ -1,5 +1,5 @@
 use eframe::egui;
-use egui::{Color32, RichText, Stroke, Vec2};
+use egui::{Color32, RichText, Stroke};
 use std::process::Command;
 use std::fs;
 use std::path::PathBuf;
@@ -47,17 +47,17 @@ impl Default for LazoMain {
 
 impl eframe::App for LazoMain {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
-        // --- TOP HUD ---
+        // --- Top HUD ---
         egui::TopBottomPanel::top("top_bar")
             .frame(egui::Frame::default().inner_margin(12.0).fill(Color32::from_white_alpha(5)))
             .show(ctx, |ui| {
                 ui.horizontal(|ui| {
                     ui.vertical(|ui| {
-                        ui.label(RichText::new("Q O R E X  S C I T E C H").color(Color32::from_gray(80)).strong().size(12.0));
-                        ui.label(RichText::new("SYSTEM INTELLIGENCE CORE").color(Color32::from_gray(80)).size(9.0));
+                        ui.label(RichText::new("Q O R E X  S C I T E C H").color(Color32::from_gray(140)).strong().size(12.0));
+                        ui.label(RichText::new("SYSTEM INTELLIGENCE CORE").color(Color32::from_gray(140)).size(9.0));
                     });
                     ui.add_space(30.0);
-                    ui.label(RichText::new("SYSTEM READY").color(Color32::from_gray(100)).size(10.0));
+                    ui.label(RichText::new("SYSTEM READY").color(Color32::from_gray(140)).size(10.0));
                     
                     ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
                         ui.label(RichText::new("OMAR QUIROZ").strong().color(Color32::from_gray(140)).size(11.0));
@@ -65,14 +65,14 @@ impl eframe::App for LazoMain {
                 });
             });
 
-        // --- MAIN CONTENT ---
+        // --- Main Content ---
         egui::CentralPanel::default()
             .frame(egui::Frame::default().fill(Color32::from_rgb(5, 5, 5))) 
             .show(ctx, |ui| {
                 ui.vertical_centered(|ui| {
                     ui.add_space(ui.available_height() * 0.1);
-                    ui.label(RichText::new("L A Z O").color(Color32::from_gray(80)).size(80.0).strong());
-                    ui.label(RichText::new("ENGINEERING AND SIMULATION SUITE").color(Color32::from_gray(100)).size(16.0));
+                    ui.label(RichText::new("L A Z O").color(Color32::from_gray(140)).size(80.0).strong());
+                    ui.label(RichText::new("ENGINEERING AND SIMULATION SUITE").color(Color32::from_gray(140)).size(16.0));
                     ui.add_space(60.0);
                 });
 
@@ -82,9 +82,9 @@ impl eframe::App for LazoMain {
                 ui.horizontal(|ui| {
                     ui.add_space(spacing);
                     
-                    // NODE MODULE
+                    // Node Module
                     ui.vertical(|ui| {
-                        let btn = ui.add_sized([column_width, 200.0], egui::Button::new(RichText::new("> NODE").size(28.0))
+                        let btn = ui.add_sized([column_width, 200.0], egui::Button::new(RichText::new("> NODE").color(Color32::from_gray(140)).size(28.0))
                             .fill(Color32::from_rgb(20, 5, 5))
                             .stroke(Stroke::new(1.5, Color32::from_rgb(200, 0, 0))));
                         if btn.clicked() {
@@ -95,9 +95,9 @@ impl eframe::App for LazoMain {
 
                     ui.add_space(spacing);
 
-                    // MODEL MODULE
+                    // Model Module
                     ui.vertical(|ui| {
-                        let btn = ui.add_sized([column_width, 200.0], egui::Button::new(RichText::new("> MODEL").size(28.0))
+                        let btn = ui.add_sized([column_width, 200.0], egui::Button::new(RichText::new("> MODEL").color(Color32::from_gray(140)).size(28.0))
                             .fill(Color32::from_rgb(20, 18, 5))
                             .stroke(Stroke::new(1.5, Color32::from_rgb(200, 160, 0))));
                         if btn.clicked() {
@@ -108,14 +108,14 @@ impl eframe::App for LazoMain {
                 });
             });
 
-        // --- PROJECT INITIALIZATION MODAL ---
+        // --- Project Initialization Modal ---
         if self.show_modal {
             let module = self.pending_module.clone().unwrap_or_default();
             let accent = if module == "NODE" { Color32::from_rgb(200, 0, 0) } else { Color32::from_rgb(200, 160, 0) };
 
             egui::Window::new("PROJECT INITIALIZATION")
                 .pivot(egui::Align2::CENTER_CENTER)
-                .fixed_pos(ctx.screen_rect().center()) 
+                .fixed_pos(ctx.content_rect().center()) 
                 .frame(egui::Frame::window(&ctx.style()).fill(Color32::from_rgb(10, 10, 10)).stroke(Stroke::new(1.0, accent)))
                 .show(ctx, |ui| {
                     ui.set_width(500.0);
