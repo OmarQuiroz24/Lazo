@@ -17,7 +17,6 @@ fn main() -> eframe::Result<()> {
 
     let options = eframe::NativeOptions {
         viewport: egui::ViewportBuilder::default()
-            .with_inner_size([1280.0, 720.0])
             .with_title("Lazo Model")
             .with_maximized(true),
         ..Default::default()
@@ -102,7 +101,7 @@ impl eframe::App for LazoModel {
             .show(ctx, |ui| {
                 ui.vertical_centered(|ui| {
                     // Visual Feedback Area
-                    let rect = ui.available_rect_before_wrap().shrink(20.0);
+                    let rect = ui.available_rect_before_wrap().shrink(0.0);
                     ui.painter().rect_stroke(
                         rect, 
                         2.0, 

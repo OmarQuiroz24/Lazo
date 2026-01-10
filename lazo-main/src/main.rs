@@ -8,14 +8,13 @@ use rfd::FileDialog;
 fn main() -> eframe::Result<()> {
     let options = eframe::NativeOptions {
         viewport: egui::ViewportBuilder::default()
-            .with_inner_size([1280.0, 720.0])
             .with_maximized(true)
             .with_active(true),
         ..Default::default()
     };
     
     eframe::run_native(
-        "Lazo System Interface",
+        "Lazo",
         options,
         Box::new(|cc| {
             let mut visuals = egui::Visuals::dark();

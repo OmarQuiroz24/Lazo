@@ -1,14 +1,21 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
+#[derive(Debug, Clone)]
+pub struct Vec2 {
+    pub x: f32,
+    pub y: f32
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
+#[derive(Debug, Clone)]
+pub enum BlockKind {
+    Model { function: String },
+    Node { function: std::path::PathBuf }
 }
+
+#[derive(Debug)]
+pub struct Block {
+    pub id: String,
+    pub pos: Vec2,
+    pub kind: BlockKind,
+    pub input: Vec<String>,
+    pub output: Vec<String>
+}
+
